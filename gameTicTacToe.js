@@ -1,6 +1,7 @@
 // Import Board from "./classes/board.js"
 const Board = require("./classes/board.js")
 const Player = require("./classes/player.js")
+const Game = require("./classes/board.js")
 
 const board = new Board(4, 4)
 

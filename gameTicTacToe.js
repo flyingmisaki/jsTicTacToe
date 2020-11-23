@@ -1,14 +1,19 @@
 // Import Board from "./classes/board.js"
 const Board = require("./classes/board.js")
 const Player = require("./classes/player.js")
-const Game = require("./classes/board.js")
+const Game = require("./classes/game.js")
 
-const board = new Board(4, 4)
+// const board = new Board(4, 4)
 
-board.state = [["x", "x", "x", "o"], 
-               ["x", "o", "o", "o"],
-               ["o", "o", "x", "o"],
-               ["o", "x", "x", "x"]]
+// board.state = [["", "", "", ""], 
+//                ["", "", "", ""],
+//                ["", "", "", ""],
+//                ["", "", "", ""]]
 
-board.print()
-board.getWinner()
+// board.insertCounter('x', 3, 3)
+
+// board.print()
+
+const game = new Game()
+
+game.start()

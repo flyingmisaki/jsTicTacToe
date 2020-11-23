@@ -1,3 +1,5 @@
+VALID_COUNTERS = ["x", "o"]
+
 // Represents a game board
 class Board {
     constructor(width, height) {
@@ -7,6 +9,21 @@ class Board {
         this.clear()
     }
 
+    // Inserts a given counter at x, y if move is possible
+    insertCounter(counter, x, y) {
+        if (x < 0 || x >= this.width || y < 0 || y >= this.height) {
+            throw new Error("Counter index is out of bounds")
+        }
+        if (!VALID_COUNTERS.includes(counter)) {
+            throw new Error("Invalid counter")
+        }
+        if (this.getCounter(x, y) !== "") {
+            throw new Error("Cell already populated")
+        }
+        this.state[y][x] = counter
+    }
+
+    // Returns a row for a given y
     getRow(y) {
         return this.state[y]
     }
@@ -16,26 +33,30 @@ class Board {
         return this.state.map(row => row[x])
     }
 
+    // Returns the counter in a proper x, y form
     getCounter(x, y) {
         return this.state[y][x]
     }
 
     // Returns winner if there is one
     getWinner() {
-        console.log("Horizontal win: " + this.getWinnerFromRows())
-        console.log("Vertical win: " + this.getWinnerFromColumns())
-        console.log("Diag win: " + this.getWinnerFromDiagonal())
-        console.log("Antidiag win: " + this.getWinnerFromAntiDiagonal())
+        let winner = this.getWinnerFromRows()
+        if (winner != null) {return winner}
+        winner = this.getWinnerFromColumns()
+        if (winner != null) {return winner}
+        winner = this.getWinnerFromDiagonal()
+        if (winner != null) {return winner}
+        return this.getWinnerFromAntiDiagonal()
     }
 
     // Returns true if every cell of the board is empty
     isEmpty() {
-        return this.state.every(cell => !cell)
+        return this.state.flat().every(cell => cell == '')
     }
     
     // Returns true if every cell of the board is full
     isFull() {
-        return this.state.every(cell => cell)
+        return this.state.flat().every(cell => cell !== '')
     }
 
     // Clears board
@@ -97,7 +118,7 @@ class Board {
     // Gets diagonal and fills it into an array
     getDiagonal() {
         let diagonal = []
-        for (let x = 0, y = 0; x < this.width, y < this.width; x++, y++) {
+        for (let x = 0, y = 0; x < this.width; x++, y++) {
             diagonal.push(this.getCounter(x, y))
         }
         return diagonal
@@ -106,7 +127,7 @@ class Board {
     // Gets antidiagonal and fills it into an array
     getAntiDiagonal() {
         let antiDiagonal = []
-        for (let x = 0, y = this.height - 1; x > this.width; x++, y--) {
+        for (let x = 0, y = this.height - 1; x < this.width; x++, y--) {
             antiDiagonal.push(this.getCounter(x, y))
         }
         return antiDiagonal

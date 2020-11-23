@@ -1,0 +1,22 @@
+{
+  "name": "jstictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gameTicTacToe.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flyingmisaki/jsTicTacToe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/flyingmisaki/jsTicTacToe/issues"
+  },
+  "homepage": "https://github.com/flyingmisaki/jsTicTacToe#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

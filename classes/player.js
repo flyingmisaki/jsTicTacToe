@@ -4,11 +4,11 @@ const prompt = require('prompt-sync')()
 class Player {
     constructor(counter) {
         this.counter = counter
-
     }
 
     // Makes a move on the board (to be implemented by subclasses)
-    makeMove(board) {}
+    makeMove(board) {
+    }
 }
 
 // Represents a human player
@@ -20,11 +20,15 @@ class HumanPlayer extends Player {
         while (!placed) {
             placed = true
             try {
-                const x = prompt('Enter an x: \n> ')
-                const y = prompt('Enter a y: \n> ')
+                console.log('Enter an x:')
+                const x = prompt()
+                console.log('Enter an y:')
+                const y = prompt()
                 board.insertCounter(this.counter, x, y)
             } 
             catch (error) {
+                console.clear()
+                board.print()
                 console.log(error.message)
                 placed = false
             }
@@ -32,4 +36,31 @@ class HumanPlayer extends Player {
     }
 }
 
-module.exports = {Player, HumanPlayer}
+// Represents an AI that plays randomly
+class RandomPlayer extends Player {
+
+    makeMove(board) {
+        // Create empty list to hold valid board positions (pairs of [x,y])
+        const validPositions = []
+        
+        // Go through every x,y combo on the board
+        for (let x = 0; x < board.width; x++) {
+            for (let y = 0; y < board.height; y++) {
+                
+                // Add [x,y] to validPositions if its an empty board space
+                if (board.getCounter(x, y) == '') {
+                    validPositions.push([x,y])
+                }
+            }
+        }
+
+        // Choose a random position from the list
+        const index = Math.floor(Math.random() * validPositions.length)
+        const [x,y] = validPositions[index]
+
+        // Insert counter at the random position
+        board.insertCounter(this.counter, x, y)
+    }
+}
+
+module.exports = {Player, HumanPlayer, RandomPlayer}

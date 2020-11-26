@@ -61,7 +61,11 @@ class Board {
 
     // Clears board
     clear() {
-        this.state = new Array(this.width).fill(new Array(this.height).fill(''))
+        this.state = []
+
+        for (let y = 0; y < this.height; y++) {
+            this.state.push(new Array(this.width).fill(''))
+        }
     }
 
     // Prints the board as rows and dividers

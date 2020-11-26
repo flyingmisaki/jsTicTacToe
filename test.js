@@ -1,6 +1,6 @@
 let state = [["", "", ""], ["", "", ""], ["", "", ""]]
 
-state[0][0] = "x"
+state[2][1] = "x" // y, x
 
 console.log(state)
 

@@ -23,15 +23,19 @@ class Game {
         console.log("Starting")
         
         while (!this.isOver()) {
-            console.log(this.isOver())
+            //console.log(this.isOver())
             this.playRound()
         }
         const winner = this.board.getWinner()
 
         if (winner !== null) {
+            console.clear()
+            this.board.print()
             console.log(`Player ${winner} has won.`)
         }
         else {
+            console.clear()
+            this.board.print()
             console.log("It's a draw!")
         }
     }

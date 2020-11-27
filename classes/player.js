@@ -39,6 +39,7 @@ class HumanPlayer extends Player {
 // Represents an AI that plays randomly
 class RandomPlayer extends Player {
 
+    // Places counter at a random valid position
     makeMove(board) {
         // Create empty list to hold valid board positions (pairs of [x,y])
         const validPositions = []
@@ -49,14 +50,14 @@ class RandomPlayer extends Player {
                 
                 // Add [x,y] to validPositions if its an empty board space
                 if (board.getCounter(x, y) == '') {
-                    validPositions.push([x,y])
+                    validPositions.push([x, y])
                 }
             }
         }
 
         // Choose a random position from the list
         const index = Math.floor(Math.random() * validPositions.length)
-        const [x,y] = validPositions[index]
+        const [x, y] = validPositions[index]
 
         // Insert counter at the random position
         board.insertCounter(this.counter, x, y)

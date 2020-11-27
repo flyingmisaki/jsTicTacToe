@@ -21,9 +21,9 @@ class HumanPlayer extends Player {
             placed = true
             try {
                 console.log('Enter an x:')
-                const x = prompt()
+                const x = prompt('>')
                 console.log('Enter an y:')
-                const y = prompt()
+                const y = prompt('>')
                 board.insertCounter(this.counter, x, y)
             } 
             catch (error) {
@@ -64,4 +64,11 @@ class RandomPlayer extends Player {
     }
 }
 
-module.exports = {Player, HumanPlayer, RandomPlayer}
+// Represents an AI that plays next to itself
+class simpleBot extends Player {
+    makeMove(board) {
+
+    }
+}
+
+module.exports = {Player, HumanPlayer, RandomPlayer, simpleBot}

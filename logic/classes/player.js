@@ -66,8 +66,10 @@ class RandomPlayer extends Player {
 
 // Represents an AI that plays next to itself
 class simpleBot extends Player {
+    // Places counter next to another identical counter
     makeMove(board) {
-
+        // Create empty list to hold valid board positions (pairs of [x,y])
+        const validPositions = []
     }
 }
 
